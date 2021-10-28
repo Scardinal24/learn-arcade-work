@@ -9,8 +9,8 @@ coin_sound = arcade.load_sound("coin2.wav")
 SPRITE_SCALING_PLAYER = 0.5
 SPRITE_SCALING_SLIME = 0.2
 SPRITE_SCALING_BAD_SLIME = 0.2
-SLIME_COUNT = 50
-BAD_SLIME_COUNT = 50
+SLIME_COUNT = 100
+BAD_SLIME_COUNT = 100
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -130,6 +130,12 @@ class MyGame(arcade.Window):
         # Put the text on the screen.
         output = f"Score: {self.score}"
         arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
+
+        if self.slime_list == 0:
+            arcade.draw_text("GAME OVER",
+                             150, 230,
+                             arcade.color.BLACK, 24)
+
 
     def on_mouse_motion(self, x, y, dx, dy):
         """ Handle Mouse Motion """
