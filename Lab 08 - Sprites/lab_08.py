@@ -131,11 +131,8 @@ class MyGame(arcade.Window):
         output = f"Score: {self.score}"
         arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
 
-        if self.slime_list == 0:
-            arcade.draw_text("GAME OVER",
-                             150, 230,
-                             arcade.color.BLACK, 24)
-
+        if len(self.slime_list) == 0:
+            arcade.draw_text("GAME OVER", 50, 50, arcade.color.WHITE)
 
     def on_mouse_motion(self, x, y, dx, dy):
         """ Handle Mouse Motion """
@@ -145,7 +142,10 @@ class MyGame(arcade.Window):
         self.player_sprite.center_y = y
 
     def update(self, delta_time):
-        """ Movement and game logic """
+
+        if len(self.slime_list) > 0:
+            self.bad_slime_list.update()
+            self.slime_list.update()
 
         # Call update on all sprites
         self.slime_list.update()
@@ -177,7 +177,6 @@ def main():
     window = MyGame()
     window.setup()
     arcade.run()
-
 
 if __name__ == "__main__":
     main()
