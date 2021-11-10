@@ -26,9 +26,10 @@ class BeachBall:
 
 
 class SandCastle:
-    def __init__(self, position_x, position_y, change_x, change_y, color):
+    def __init__(self, position_x, position_y, radius, change_x, change_y, color):
         self.position_x = position_x
         self.position_y = position_y
+        self.radius = radius
         self.change_x = change_x
         self.change_y = change_y
         self.color = color
@@ -78,7 +79,7 @@ class MyGame(arcade.Window):
         # creating the ball
         self.beach_ball = BeachBall(50, 50, 15, arcade.color.RUBY_RED)
 
-        self.sand_castle = SandCastle(50, 50, 0, 0, 15)
+        self.sand_castle = SandCastle(50, 50, 0, 0, 0, 15)
 
     def on_draw(self):
         arcade.start_render()

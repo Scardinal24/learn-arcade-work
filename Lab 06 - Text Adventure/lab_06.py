@@ -66,7 +66,7 @@ def main():
                    "\nThere is a room north, south, and east of here.", 11, 5, 9, None)
     room_list.append(my_room)
     # Room 11
-    my_room = Room("You are in the terraria room. CALAMITUS IS HERE! Quit the game now before you die!"
+    my_room = Room("You are in the Terraria room. CALAMITUS IS HERE! Quit the game now before you die!"
                    "\nNo actually. Quit the game. There is nowhere else to go", None, None, None, None)
     room_list.append(my_room)
     done = False

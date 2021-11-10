@@ -1,114 +1,182 @@
-class Room:
-    def __init__(self, description, north, east, south, west):
-        """Directions"""
-        self.description = description
-        self.north = north
-        self.east = east
-        self.south = south
-        self.west = west
-# Main function
-# Main Function
+""" Lab 7 - User Control """
+
+import arcade
+
+# --- Constants ---
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+MOVEMENT_SPEED = 10
+
+class BeachBall:
+    def __init__(self, position_x, position_y, radius, color):
+
+        self.position_x = position_x
+        self.position_y = position_y
+        self.change_x = 0
+        self.change_y = 0
+        self.radius = radius
+        self.color = color
+
+    def draw(self):
+
+        arcade.draw_circle_filled(self.position_x,
+                                  self.position_y,
+                                  self.radius,
+                                  self.color)
+
+
+class SandCastle:
+    def __init__(self, position_x, position_y, radius, change_x, change_y, color):
+        self.position_x = position_x
+        self.position_y = position_y
+        self.radius = radius
+        self.change_x = change_x
+        self.change_y = change_y
+        self.color = color
+
+    def draw(self):
+        # Sand Castle
+        x = self.position_x
+        y = self.position_y
+        arcade.draw_rectangle_filled(x, y, 20, 60, arcade.csscolor.BURLYWOOD)
+        arcade.draw_rectangle_filled(x+35, y-10, 50, 40, arcade.csscolor.BURLYWOOD, 0)
+        arcade.draw_rectangle_filled(x+55, y, 20, 60, arcade.csscolor.BURLYWOOD)
+        arcade.draw_arc_filled(x+27, y-30, 20, 40, arcade.csscolor.PERU, 0, 180)
+        arcade.draw_triangle_filled(x, y+50, x-20, y+20, x+20, y+20, arcade.csscolor.BURLYWOOD)
+        arcade.draw_triangle_filled(x+75, y+20, x+35, y+20, x+55, y+50, arcade.csscolor.BURLYWOOD)
+
+    def update(self):
+        # Move sandcastle
+        self.position_y += self.change_y
+        self.position_x += self.change_x
+
+        if self.position_x < self.radius:
+            self.position_x = self.radius
+
+        if self.position_x > SCREEN_WIDTH - self.radius:
+            self.position_x = SCREEN_WIDTH - self.radius
+
+        if self.position_y < self.radius:
+            self.position_y = self.radius
+
+        if self.position_y > SCREEN_HEIGHT - self.radius:
+            self.position_y = SCREEN_HEIGHT - self.radius
+
+
+class MyGame(arcade.Window):
+
+
+    def __init__(self, width, height, title):
+
+        super().__init__(width, height, title)
+
+        # Load the sound when the game starts
+        self.laser_sound = arcade.load_sound("laser.wav")
+        self.error_sound = arcade.load_sound("error2.wav")
+
+        self.set_mouse_visible(False)
+
+        # creating the ball
+        self.beach_ball = BeachBall(50, 50, 15, arcade.color.RUBY_RED)
+
+        self.sand_castle = SandCastle(50, 50, 0, 0, 0, 15)
+
+    def on_draw(self):
+        arcade.start_render()
+        arcade.set_background_color(arcade.color.SKY_BLUE)
+        arcade.draw_lrtb_rectangle_filled(0, 800, 250, 0, arcade.color.APRICOT)
+
+# Sun
+        arcade.draw_circle_filled(500, 550, 40, arcade.color.YELLOW)
+
+# Rays to the left, right, up, and down
+        arcade.draw_line(500, 550, 400, 550, arcade.color.YELLOW, 3)
+        arcade.draw_line(500, 550, 600, 550, arcade.color.YELLOW, 3)
+        arcade.draw_line(500, 550, 500, 450, arcade.color.YELLOW, 3)
+        arcade.draw_line(500, 550, 500, 650, arcade.color.YELLOW, 3)
+
+# Diagonal rays
+        arcade.draw_line(500, 550, 550, 600, arcade.color.YELLOW, 3)
+        arcade.draw_line(500, 550, 550, 500, arcade.color.YELLOW, 3)
+        arcade.draw_line(500, 550, 450, 600, arcade.color.YELLOW, 3)
+        arcade.draw_line(500, 550, 450, 500, arcade.color.YELLOW, 3)
+
+# Cloud 1
+        arcade.draw_circle_filled(200, 450, 30, arcade.csscolor.FLORAL_WHITE)
+        arcade.draw_circle_filled(240, 460, 30, arcade.csscolor.FLORAL_WHITE)
+        arcade.draw_circle_filled(210, 480, 30, arcade.csscolor.FLORAL_WHITE)
+        arcade.draw_circle_filled(170, 480, 30, arcade.csscolor.FLORAL_WHITE)
+
+# Cloud 2
+        arcade.draw_circle_filled(750, 450, 30, arcade.csscolor.FLORAL_WHITE)
+        arcade.draw_circle_filled(710, 460, 30, arcade.csscolor.FLORAL_WHITE)
+        arcade.draw_circle_filled(680, 480, 30, arcade.csscolor.FLORAL_WHITE)
+        arcade.draw_circle_filled(720, 480, 30, arcade.csscolor.FLORAL_WHITE)
+
+# Hammock with two trees
+
+# Palm trees
+        arcade.draw_rectangle_filled(80, 200, 25, 300, arcade.csscolor.SIENNA)
+        arcade.draw_rectangle_filled(270, 270, 25, 300, arcade.csscolor.SIENNA)
+        arcade.draw_arc_filled(120, 350, 80, 40, arcade.csscolor.DARK_GREEN, 0, 180)
+        arcade.draw_arc_filled(115, 370, 80, 40, arcade.csscolor.DARK_GREEN, 0, 180, 35)
+        arcade.draw_arc_filled(65, 370, 80, 40, arcade.csscolor.DARK_GREEN, 180, 360, 125)
+        arcade.draw_arc_filled(300, 440, 80, 40, arcade.csscolor.DARK_GREEN, 0, 180, 35)
+        arcade.draw_arc_filled(250, 440, 80, 40, arcade.csscolor.DARK_GREEN, 180, 360, 125)
+        arcade.draw_arc_filled(50, 350, 80, 40, arcade.csscolor.DARK_GREEN, 0, 180)
+        arcade.draw_arc_filled(310, 415, 80, 40, arcade.csscolor.DARK_GREEN, 0, 180)
+        arcade.draw_arc_filled(240, 415, 80, 40, arcade.csscolor.DARK_GREEN, 0, 180)
+        arcade.draw_circle_filled(265, 425, 15, arcade.csscolor.SADDLE_BROWN)
+        arcade.draw_circle_filled(280, 425, 15, arcade.csscolor.SADDLE_BROWN)
+        arcade.draw_circle_filled(270, 410, 15, arcade.csscolor.SADDLE_BROWN)
+        arcade.draw_circle_filled(76, 360, 15, arcade.csscolor.SADDLE_BROWN)
+        arcade.draw_circle_filled(90, 360, 15, arcade.csscolor.SADDLE_BROWN)
+        arcade.draw_circle_filled(80, 345, 15, arcade.csscolor.SADDLE_BROWN)
+
+# Hammock
+        arcade.draw_arc_filled(170, 250, 190, 60, arcade.csscolor.SLATE_BLUE, 180, 360, 15)
+
+# Beach Ball
+        self.beach_ball.draw()
+
+# Sand Castle
+        self.sand_castle.draw()
+
+    def update(self, delta_time):
+        self.sand_castle.update()
+
+    def on_mouse_motion(self, x, y, dx, dy):
+
+        self.beach_ball.position_x = x
+        self.beach_ball.position_y = y
+
+    def on_mouse_press(self, x, y, button, modifiers):
+
+        if button == arcade.MOUSE_BUTTON_LEFT:
+            arcade.play_sound(self.laser_sound)
+
+    def on_key_press(self, key, modifiers):
+
+        if key == arcade.key.LEFT:
+            self.sand_castle.change_x = -MOVEMENT_SPEED
+        elif key == arcade.key.RIGHT:
+            self.sand_castle.change_x = MOVEMENT_SPEED
+        elif key == arcade.key.UP:
+            self.sand_castle.change_y = MOVEMENT_SPEED
+        elif key == arcade.key.DOWN:
+            self.sand_castle.change_y = -MOVEMENT_SPEED
+
+    def on_key_release(self, key, modifiers):
+
+        if key == arcade.key.LEFT or key == arcade.key.RIGHT:
+            self.sand_castle.change_x = 0
+        elif key == arcade.key.UP or key == arcade.key.DOWN:
+            self.sand_castle.change_y = 0
+
+
 def main():
-    print("Hello there!")
-    print("You got stuck into a Dungeon. There may be evil creatures or treasure. Cool?")
-    print("You should probably explore it, just in case there is something cool.\n")
-    # Variable
-    current_room = 0
-    # Room 0
-    room_list = []
-    my_room = Room("You are outside the dungeon."
-                   "\nGo north to enter the dungeon, or stay put. I wouldn't stay put"
-                   "\nYou'll probably get mauled by a bear.", 1, None, None, None)
-    room_list.append(my_room)
-    # Room 1
-    my_room = Room("You are in the entrance of the dungeon. Nothing special."
-                   "\nDon't go back outside. Id go north.", 2, 0, None, None)
-    room_list.append(my_room)
-    # Room 2
-    my_room = Room("Welcome to the room of doom. There is nothing there."
-                   "\nThere is a room north, east, and west of you.", 6, 1, 3, 4)
-    room_list.append(my_room)
-    # Room 3
-    my_room = Room("Welcome to the room of the heartless. There is a heartless here. I'd leave it alone."
-                   "\nThere is a room north and west of you.", 7, None, None, 2)
-    room_list.append(my_room)
-    # Room 4
-    my_room = Room("You are in the Persona room. Yu Narukami is fighting a shadow. You cheer him on!"
-                   "\nThere is a room north and east of you."
-                   "\nDon't worry. Yu defeats the shadow and gives you a high five.", 5, None, 2, None)
-    room_list.append(my_room)
-    # Room 5
-    my_room = Room("You are in a treasure room. You pick up a cool gold necklace and you put it on."
-                   "\nThere is a room north of you and east of you.", 10, 4, 6, None)
-    room_list.append(my_room)
-    # Room 6
-    my_room = Room("You are in the Castlevania room. There is the Shadow Knight."
-                   "\nYou don't want to bug him as he sold his soul to the devil."
-                   "\nThere is a room north, south, east, and west of you.", 9, 2, 7, 5)
-    room_list.append(my_room)
-    # Room 7
-    my_room = Room("You are in the Dragon Ball Z room of Doom."
-                   "\nOh no! Frieza is here! You better run into a different room quick!"
-                   "\nThere is a room north, south and west of you.", 8, 3, None, 6)
-    room_list.append(my_room)
-    # Room 8
-    my_room = Room("Welcome to the Naruto Room. Naruto is sitting in the corner eating ramen."
-                   "\nHe has another bowl next to him, so you sit down and eat ramen with him."
-                   "\nThere is a room north, south, and west of you.", 11, 7, None, 9)
-    room_list.append(my_room)
-    # Room 9
-    my_room = Room("You are in the master bedroom, spacious but empty."
-                   "\nReturn back to the north hall by going west.", None, None, None, 7)
-    room_list.append(my_room)
-    # Room 10
-    my_room = Room("You are in the master bedroom, spacious but empty."
-                   "\nReturn back to the north hall by going west.", None, None, None, 7)
-    room_list.append(my_room)
-    # Room 11
-    my_room = Room("You are in the master bedroom, spacious but empty."
-                   "\nReturn back to the north hall by going west.", None, None, None, 7)
-    room_list.append(my_room)
-    done = False
-    while not done:
-        # User choice
-        print(room_list[current_room].description)
-        user_choice = input("\nWhat direction. ")
-        # User options
-        # If user quits
-        if user_choice.upper() == "QUIT" or user_choice.upper() == "Q":
-            print("you have quit the game.")
-            done = True
-        # If user wants to go north
-        elif user_choice.upper() == "NORTH" or user_choice.upper() == "N":
-            next_room = room_list[current_room].north
-            if next_room is None:
-                print()
-                print("\nYou cant go there.")
-            else:
-                current_room = next_room
-        # If user wants to go east
-        elif user_choice.upper() == "EAST" or user_choice.upper() == "E":
-            next_room = room_list[current_room].east
-            if next_room is None:
-                print()
-                print("\nYou cant go there.")
-            else:
-                current_room = next_room
-        # If user wants to go south
-        elif user_choice.upper() == "SOUTH" or user_choice.upper() == "S":
-            next_room = room_list[current_room].south
-            if next_room is None:
-                print()
-                print("\nYou cant go there.")
-            else:
-                current_room = next_room
-        # If user wants to go west
-        elif user_choice.upper() == "WEST" or user_choice.upper() == "W":
-            next_room = room_list[current_room].west
-            if next_room is None:
-                print()
-                print("\nYou cant go there.")
-            else:
-                current_room = next_room
-# Main function
+    window = MyGame(640, 480, "Lab 7")
+    arcade.run()
+
+
 main()
