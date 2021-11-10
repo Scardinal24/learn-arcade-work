@@ -1,151 +1,116 @@
-# This Lab 6 was coded by Sammy Cardinal
-
-# classes
 class Room:
-    def __init__(self, description, north, south, east, west):
+    def __init__(self, description, north, east, south, west):
+        """Directions"""
         self.description = description
         self.north = north
-        self.south = south
         self.east = east
+        self.south = south
         self.west = west
-
-class Character:
-    def __init__(self, name, hp, current_hp, dmg):
-        self.name = name
-        self.hp = hp
-        self.current_hp = current_hp
-        self.dmg = dmg
-
-class Enemy:
-    def __init__(self, name, hp, current_hp, dmg):
-        self.name = name
-        self.hp = hp
-        self.current_hp = current_hp
-        self.dmg = dmg
-
+# Main function
+# Main Function
 def main():
+    print("Hello there!")
+    print("You got stuck into a Dungeon. There may be evil creatures or treasure. Cool?")
+    print("You should probably explore it, just in case there is something cool.\n")
+    # Variable
+    current_room = 0
+    # Room 0
     room_list = []
-    # Outside
-    outside = Room("Outside", 1, None, None, None)
-    room_list.append(outside)
-    # Entrance
-    entrence = Room("Entrance", 2, 0, None, None)
-    room_list.append(entrence)
+    my_room = Room("You are outside the dungeon."
+                   "\nGo north to enter the dungeon, or stay put. I wouldn't stay put"
+                   "\nYou'll probably get mauled by a bear.", 1, None, None, None)
+    room_list.append(my_room)
     # Room 1
-    room_two = Room("Room 1", 6, 1, 3, 4)
-    room_list.append(room_two)
+    my_room = Room("You are in the entrance of the dungeon. Nothing special."
+                   "\nDon't go back outside. Id go north.", 2, 0, None, None)
+    room_list.append(my_room)
     # Room 2
-    room_three = Room("Room 2", 6, 1, 4, 3)
-    room_list.append(room_three)
+    my_room = Room("Welcome to the room of doom. There is nothing there."
+                   "\nThere is a room north, east, and west of you.", 6, 1, 3, 4)
+    room_list.append(my_room)
     # Room 3
-    room_four = Room("Room 3", 7, None, 2, None)
-    room_list.append(room_four)
+    my_room = Room("Welcome to the room of the heartless. There is a heartless here. I'd leave it alone."
+                   "\nThere is a room north and west of you.", 7, None, None, 2)
+    room_list.append(my_room)
     # Room 4
-    room_five = Room("Room 4", 5, None, None, 2)
-    room_list.append(room_five)
+    my_room = Room("You are in the Persona room. Yu Narukami is fighting a shadow. You cheer him on!"
+                   "\nThere is a room north and east of you."
+                   "\nDon't worry. Yu defeats the shadow and gives you a high five.", 5, None, 2, None)
+    room_list.append(my_room)
     # Room 5
-    room_six = Room("Room 5", 10, 4, None, 6)
-    room_list.append(room_six)
+    my_room = Room("You are in a treasure room. You pick up a cool gold necklace and you put it on."
+                   "\nThere is a room north of you and east of you.", 10, 4, 6, None)
+    room_list.append(my_room)
     # Room 6
-    room_seven = Room("Room 6", 9, 2, 5, 7)
-    room_list.append(room_seven)
+    my_room = Room("You are in the Castlevania room. There is the Shadow Knight."
+                   "\nYou don't want to bug him as he sold his soul to the devil."
+                   "\nThere is a room north, south, east, and west of you.", 9, 2, 7, 5)
+    room_list.append(my_room)
     # Room 7
-    room_eight = Room("Room 7", 8, 3, 6, None)
-    room_list.append(room_eight)
+    my_room = Room("You are in the Dragon Ball Z room of Doom."
+                   "\nOh no! Frieza is here! You better run into a different room quick!"
+                   "\nThere is a room north, south and west of you.", 8, 3, None, 6)
+    room_list.append(my_room)
     # Room 8
-    room_nine = Room("Room 8", None, 7, 9, None)
-    room_list.append(room_nine)
+    my_room = Room("Welcome to the Naruto Room. Naruto is sitting in the corner eating ramen."
+                   "\nHe has another bowl next to him, so you sit down and eat ramen with him."
+                   "\nThere is a room north, south, and west of you.", 11, 7, None, 9)
+    room_list.append(my_room)
     # Room 9
-    room_ten = Room("Room 9", 11, 6, 10, 8)
-    room_list.append(room_ten)
+    my_room = Room("You are in the Sword Art Online Room. This is the worst room ever."
+                   "\nAsuna and Kirito are cuddling. Ew! Leave now!"
+                   "\nThere is a room north, south, east, and west of you.", 11, 6, 8, 10)
+    room_list.append(my_room)
     # Room 10
-    room_eleven = Room("Room 10", None, 5, None, 9)
-    room_list.append(room_eleven)
+    my_room = Room("You are in the Legend of Zelda room. Dark Ganon is there. I'd leave him alone."
+                   "\nThere is a room north, south, and east of here.", 11, 5, 9, None)
+    room_list.append(my_room)
     # Room 11
-    room_twelve = Room("Room 11", None, 9, None, None)
-    room_list.append(room_twelve)
-
-    character_list = []
-    # Self
-    self = Character("Self", 50, 0, 5)
-    character_list.append(self)
-    # Scout
-    scout = Character("Scout", 150, 0, 15)
-    character_list.append(scout)
-    # Heavy
-    heavy = Character("Heavy", 200, 0, 25)
-    character_list.append(heavy)
-    # Soldier
-    soldier = Character("Soldier", 175, 0, 20)
-    character_list.append(soldier)
-
-    enemy_list = []
-    # Heartless
-    heartless = Enemy("Heartless", 100, 0, 5)
-    enemy_list.append(heartless)
-    # Shadow Knight
-    shadow_knight = Enemy("Shadow Knight", 150, 0, 20)
-    enemy_list.append(shadow_knight)
-    # Calamitus
-    calamitus = Enemy("Calamitus", 300, 0, 50)
-    enemy_list.append = Enemy(calamitus)
-
-current_room  = 0
-entrance = current_room
-
-def start():
-    outside()
-    print("\nYou got sucked into a world where enemies from multiple games come together.")
-    print("The only way out is to survive the dungeon. The entrance is in front of you.")
-    print("Do you stay outside and see what happens or do you enter?")
-
-    answer = input(">").lower()
-
-    if "stay outside" or "Stay outside" or "outside" in answer:
-        print("Good job. In the middle of the night, you got mauled by a bear. Game Over.")
-        game_over()
-
-    elif "go inside" or "Go inside" or "enter" or "Enter" in answer:
-        entrence()
-
-def entrence():
-    print("\nYou are now in the entrance, there is a room north of you. What direction do you go?")
-
-    answer = input(">").lower()
-
-    if "north" or "North" or "n" or "N" in answer:
-        room_two()
-    else:
-        print("Do you even know how to type?")
-
-def room_two():
-    print("\nWelcome to the first room. There is a room north, east, and west of you.")
-    print("The entrance is south of you. There is really nothing going on here. Which direction next?")
-
-    if "North" or "north" or "N" or "n" in answer:
-        room_six()
-    elif "West" or "west" or "W" or "w" in answer:
-        room_three()
-    elif "East" or "east" or "E" or "e" in answer:
-        room_four()
-    elif "South" or "south" or "S" or "s" in answer:
-        print("You wanna go back? Alright...")
-        entrance()
-    else:
-        print("Do you even know how to type?")
-
-
-def room_three():
-    print("\nWelcome to the first room. There is a room north and east of you.")
-    print("The entrance is south of you. There is really nothing going on here. Which direction next?")
-
-    if "North" or "north" or "N" or "n" in answer:
-        room_seven()
-    elif "West" or "west" or "W" or "w" in answer:
-        print("There isn't a room here. Try again")
-    elif "East" or "east" or "E" or "e" in answer:
-        room_four()
-
-    else:
-        print("Do you even know how to type?")
+    my_room = Room("You are in the terraria room. CALAMITUS IS HERE! Quit the game now before you die!"
+                   "\nNo actually. Quit the game. There is nowhere else to go", None, None, None, None)
+    room_list.append(my_room)
+    done = False
+    while not done:
+        # User choice
+        print(room_list[current_room].description)
+        user_choice = input("\nWhat direction. ")
+        # User options
+        # If user quits
+        if user_choice.upper() == "QUIT" or user_choice.upper() == "Q":
+            print("you have quit the game.")
+            done = True
+        # If user wants to go north
+        elif user_choice.upper() == "NORTH" or user_choice.upper() == "N":
+            next_room = room_list[current_room].north
+            if next_room is None:
+                print()
+                print("\nYou shant go there.")
+            else:
+                current_room = next_room
+        # If user wants to go east
+        elif user_choice.upper() == "EAST" or user_choice.upper() == "E":
+            next_room = room_list[current_room].east
+            if next_room is None:
+                print()
+                print("\nYou shant go there.")
+            else:
+                current_room = next_room
+        # If user wants to go south
+        elif user_choice.upper() == "SOUTH" or user_choice.upper() == "S":
+            next_room = room_list[current_room].south
+            if next_room is None:
+                print()
+                print("\nYou shant go there.")
+            else:
+                current_room = next_room
+        # If user wants to go west
+        elif user_choice.upper() == "WEST" or user_choice.upper() == "W":
+            next_room = room_list[current_room].west
+            if next_room is None:
+                print()
+                print("\nYou shant go there.")
+            else:
+                current_room = next_room
+# Main function
 main()
+
