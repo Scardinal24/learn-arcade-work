@@ -82,6 +82,11 @@ class MyGame(arcade.Window):
 
         # Make sure we are on-grid. It is possible to click in the upper right
         # corner in the margin and go to a grid location that doesn't exist
+        if self.grid[row][column] == 0:
+            self.grid[row][column] = 1
+        else:
+            self.grid[row][column] = 0
+
         if row + 1 < ROW_COUNT:
 
             if self.grid[row + 1][column] == 0:
@@ -95,7 +100,7 @@ class MyGame(arcade.Window):
             if self.grid[row - 1][column] == 0:
                 self.grid[row  - 1][column] = 1
             else:
-                self.grid[row - 1][column + 1] = 0
+                self.grid[row - 1][column] = 0
 
         if column + 1 < COLUMN_COUNT:
 
@@ -105,7 +110,7 @@ class MyGame(arcade.Window):
             else:
                 self.grid[row][column + 1] = 0
 
-        if column < 0:
+        if column - 1 > 0:
 
             # Flip the location between 1 and 0.
             if self.grid[row][column - 1] == 0:
