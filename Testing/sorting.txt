@@ -60,6 +60,7 @@ If you include any code for problems 4-7 you are doing it wrong.
 18   74   47   0    25   29   36   92   58   40
 18   74   47   0    25   29   36   92   58   40
 18   74   47   0    25   29   36   92   40   58
+18   74   47   0    25   29   36   92   40   58
 
 
 6. Show how the following numbers can be sorted using the INSERTION sort.
@@ -67,18 +68,48 @@ If you include any code for problems 4-7 you are doing it wrong.
 Go back and re-read how this sort works.)
 
 74   92   18   47   40   58    0   36   29   25
+92   74   18   47   40   58    0   36   29   25
+18   92   74   47   40   58    0   36   29   25
+47   18   92   74   40   58    0   36   29   25
+47   18   92   40   74   58    0   36   29   25
+47   58   18   92   40   74    0   36   29   25
+47   58   18   92   40   0    74   36   29   25
+47   58   18   92   40   36   0    74   29   25
+47   58   18   92   29   40   36    0   74   25
+47   58   18   92   29   40   36    0   74   25
 
 7. Show how the following numbers can be sorted using the insertion sort:
 
-    37   11   14   50   24    7   17   88   99    9
+37   11   14   50   24    7   17   88   99    9
+11   37   14   50   24    7   17   88   99    9
+14   11   37   50   24    7   17   88   99    9
+50   14   11   37   24    7   17   88   99    9
+50   14   11   24   37    7   17   88   99    9
+50   7    14   11   24   37   17   88   99    9
+50   7    14   11   24   17   37   88   99    9
+50   7    14   11   88   24   17   37   99    9
+50   7    14   11   99   88   24   17   37    9
+50   7    14   11   99   88   24   17   37    9
+
 
 8. Explain what `min_pos` does in the selection sort.
 
+It finds the minimum array over positive values.
+
 9. Explain what `cur_pos` does in the selection sort.
+
+Shows the current position you are trying to sort.
 
 10. Explain what `scan_pos` does in the selection sort.
 
+It has a similar quirk to key_pos. It scans the numbers from right to left.
+It scans the numbers you are sorting. You use this variable to scan to the left of key_pos.
+
 11. Explain what `key_pos` and `key_value` are in the insertion sort.
+
+The code key_pos marks the boundary between unsorted and sorted sections of the list.
+The code key_value pairs with the key_pos. It is a set variable for the sorting.
+If the location is larger than key_value
 
 12. Explain `scan_pos` in the insertion sort.
 
