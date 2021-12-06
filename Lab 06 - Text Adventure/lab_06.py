@@ -7,7 +7,6 @@ class Room:
         self.south = south
         self.west = west
 # Main function
-# Main Function
 def main():
     print("Hello there!")
     print("You got stuck into a Dungeon. There may be evil creatures or treasure. Cool?")

@@ -1,0 +1,42 @@
+Sammy Cardinal
+2 December 2021
+Final Reflection
+
+    In coding, you use multiple quantitative methods. Quantitative methods are
+methods that focus on gathering numbers, or information. There are methods to
+gather and interpret data in coding. One method is using "if" statements. Think
+of it in a hypothetical sense: If I have $500, I can spend $100 on a dress and
+end up with $400, or else I still have $500. It's similar in coding. If one thing
+happens, then something else will follow, if that one thing doesn't happen, then
+something else happens.
+Another method is a class. A class essentially says what
+type of variable it is. It's like telling the computer is the character in the
+play is a protagonist, an antagonist, or a minor character. Or it's like a rpg game,
+and you're telling the computer it's a npc, a marksman, a thief, or an enemy.
+You can decide based off what game you are making, or what type of play you want.
+ Do you want a role-playing game? Do you want a talking only type of play, or an
+audience interactive play. Each method is dependent on you and what you want to make.
+There are several other methods, but if statements are popular due to how complex you
+can make them.
+     In a way, you have to pretend you are the computer. It's, in a way, a script,
+and each line you are either speaking or acting out. Different names could mean
+names of objects or names for people. You could also consider yourself a character
+in that play, and if certain events occur, you have to react to them. So I would
+almost act out and explain each line of code, even showing any sudo code, then
+predict the output based off the code. You communicate your solution like you are
+pitching an idea, or you are reciting a script you made for the play you wrote.
+    Depending on the error, I would either adjust numbers, or back up to see which
+pieces of code work. After seeing what lines of code works, then I would see which
+line started making errors. If I was incredibly stuck I'd ask a classmate to compare
+codes with me and see what was different and see why my code did not work and adjust
+accordingly. At first, I would try to find the solution myself, then ask a classmate.
+I had not gotten to the point, but if I still could not find a solution with my
+classmates then I would schedule an appointment with the professor.
+    To be completely honest, algorithms are not authentic. WHat I mean by that is
+algorithms say what's wrong and what's right, it doesn't say why it's wrong. It
+can't really help a student learn from their mistake. Numerical methods are black
+and white. With people evaluations, you can not only learn from right or wrong,
+know why there is right and wrong, and have guidance to minimize future mistakes.
+Computers, or numerical methods will only tell you the good, the bad, the ugly,
+and maybe explain why. A method can't really guide you to the right answer.
+Human interaction is always more authentic and helpful over a numerical method.
