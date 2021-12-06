@@ -31,6 +31,7 @@ class Student:
 
 class Bully:
     def __init__(self, name, hp, dmg, special, chance, north, east, south, west):
+        super().__init__()
         self.hp = hp
         self.dmg = dmg
         self.special = special
@@ -63,6 +64,7 @@ class Bully:
 
 class Teacher:
     def __init__(self, name, hp, dmg, special, chance, north, east, south, west):
+        super().__init__()
         self.hp = hp
         self.dmg = dmg
         self.special = special
@@ -95,6 +97,7 @@ class Teacher:
 
 class Janitor:
     def __init__(self, name, hp, dmg, special, chance, north, east, south, west):
+        super().__init__()
         self.hp = hp
         self.dmg = dmg
         self.special = special
@@ -127,6 +130,7 @@ class Janitor:
 
 class Principal:
     def __init__(self, name, hp, dmg, special, chance, north, east, south, west):
+        super().__init__()
         self.hp = hp
         self.dmg = dmg
         self.special = special
@@ -237,7 +241,7 @@ def main():
                      "\n We probably have to fight him!", 50, 10, 15, 5, 2, 0, None, None)
     bully_list.append(my_bully)
     # Room 7
-    my_bully = Bully("Seriously? ANother bully? How many bullys do you have?"
+    my_bully = Bully("Seriously? Another bully? How many bullys do you have?"
                    "\nYou are going to have to fight this one.", 50, 10, 15, 5, 8, 3, None, 6)
     bully_list.append(my_bully)
 
@@ -258,6 +262,56 @@ def main():
     principal_list = []
 
     # Room 11
-    my_principal = Principal("You are in the Terraria room. CALAMITUS IS HERE! Quit the game now before you die!"
-                   "\nNo actually. Quit the game. There is nowhere else to go", None, None, None, None)
+    my_principal = Principal("Ew, it's the principal King Moron."
+                   "\nI wonder if you become principal if you take him out.", None, None, None, None)
     principal_list.append(my_principal)
+
+# User input stuff
+    done = False
+    while not done:
+        # User choice
+        print(room_list[current_room].description)
+        user_choice = input("\nWhat direction. ")
+        # User options
+        # If user quits
+        if user_choice.upper() == "QUIT" or user_choice.upper() == "Q" or user_choice.upper() == "q":
+            print("you have quit the game. Hope I don't see you next time!")
+            done = True
+            # If user wants to go north
+        elif user_choice.upper() == "NORTH" or user_choice.upper() == "N" or user_choice.upper() == "n":
+            next_room = room_list[current_room].north
+            if next_room is None:
+                print()
+                print("\nYou can't go there. Sorry bud.")
+            else:
+                current_room = next_room
+        # If user wants to go east
+        elif user_choice.upper() == "EAST" or user_choice.upper() == "E" or user_choice.upper() == "e":
+            next_room = room_list[current_room].east
+            if next_room is None:
+                print()
+                # ERROR HERE: INDENT DOES NOT MATCH
+                # ANY OUTER INDENTATION LEVEL
+                print("\nYou can't go there. Sorry bud.")
+             else:
+                current_room = next_room
+                    # If user wants to go south
+        elif user_choice.upper() == "SOUTH" or user_choice.upper() == "S" or user_choice.upper() == "s":
+            next_room = room_list[current_room].south
+            if next_room is None:
+                print()
+                print("\nYou can't go there. Sorry bud.")
+            else:
+                current_room = next_room
+            # If user wants to go west
+        elif user_choice.upper() == "WEST" or user_choice.upper() == "W" or user_choice.upper() == "w":
+            next_room = room_list[current_room].west
+            if next_room is None:
+                print()
+                print("\nYou can't go there. Sorry bud.")
+            else:
+                current_room = next_room
+
+
+# Main function
+main()
