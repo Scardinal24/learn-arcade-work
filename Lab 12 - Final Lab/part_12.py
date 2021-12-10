@@ -2,6 +2,7 @@
 
 import random
 
+
 class Character:
 
     def __init__(self, description, hp, dmg, special, name, room):
@@ -31,15 +32,13 @@ class Room:
 
 def main():
 
-    change_room = True
-
     print("Hello there!")
     print("Welcome to school! Only issue is, we are in the middle of a zombie apocalypse!")
     print("Until authorities come to pick you up, you might wanna explore the school, "
         "\njust to see where's the safest place to lay low.")
     print()
     print("Oh yeah my name is AI-chan! I am here for explanation and comedic relief!")
-    print("When you fight, you can attack, check health, use a special move, and have a chance of one hitting!"
+    print("When you fight, you can attack, check health and use a special move!"
           "\n Pretty cool right~?")
     print("Just type what you want to do! Don't die on me though!")
     # Variable
@@ -154,14 +153,18 @@ def main():
     player = Player(65, 15, 25)
 # User input stuff
     done = False
+    room_change = True
     while not done:
-        # User choice
-        if change_room:
+        if room_change:
+
+            # User choice
+            # Talks about the room
             print(room_list[current_room].description)
-            change_room = False
-        for enemy in enemy_list:
-            if enemy.room == current_room:
-                print(enemy.description)
+            # Going into the room triggers the enemy
+            for enemy in enemy_list:
+                if enemy.room == current_room:
+                    print(enemy.description)
+            room_change = False
         user_choice = input("\nWant do you want to do? ")
         # User options
         # If user quits
@@ -171,7 +174,7 @@ def main():
         # If user wants to go north
         elif user_choice.lower() == "north":
             next_room = room_list[current_room].north
-            change_room = False
+            room_change = True
             if next_room is None:
                 print()
                 print("\nYou can't go there. Sorry bud.")
@@ -180,7 +183,7 @@ def main():
         # If user wants to go east
         elif user_choice.lower() == "east":
             next_room = room_list[current_room].east
-            change_room = False
+            room_change = True
             if next_room is None:
                 print()
                 print("\nYou can't go there. Sorry bud.")
@@ -189,7 +192,7 @@ def main():
                 # If user wants to go south
         elif user_choice.lower() == "south":
             next_room = room_list[current_room].south
-            change_room = False
+            room_change = True
             if next_room is None:
                 print()
                 print("\nYou can't go there. Sorry bud.")
@@ -198,7 +201,7 @@ def main():
         # If user wants to go west
         elif user_choice.lower() == "west":
             next_room = room_list[current_room].west
-            change_room = False
+            room_change = True
             if next_room is None:
                 print()
                 print("\nYou can't go there. Sorry bud.")
@@ -207,7 +210,7 @@ def main():
         # The user can choose to attack
         elif user_choice.lower() == "fight":
             print()
-            print("\nAlright! A fight! You got basic attack, special, and chance! You can also check health!"
+            print("\nAlright! A fight! You got basic attack and a special move! You can also check health!"
               "\n Don't get too cocky though because that stupid af zombie has the same thing!"
               "\n That's a bit overpowered for an enemy to be as powerful is not more than the character!"
               "\n Who created this darn zombie virus?!")
@@ -217,25 +220,40 @@ def main():
         if user_choice.lower() == "attack":
             for enemy in enemy_list:
                 if enemy.room == current_room:
-                    player.dmg += random.randrange(1, 15)
-                    enemy.hp - player.dmg
+                    player.dmg = random.randrange(1, 15)
+                    enemy.hp -= player.dmg
                     print()
                     print("Oh yeah! Let's use slash! Pow!")
                     print("That did", player.dmg, "dmg!")
-                    if enemy.hp == 0:
+                    print("That darn zombie is at", enemy.hp, " left!")
+                    if enemy.hp <= 0:
                         print()
                         print("Yahoo! Yah did it! He dead! Again!")
+                        player.hp = 65
                     else:
                         print("Kaboom! Let's keep it up!")
+                        print("Ayaya! The zombie is attacking! He's using bite!")
+                        player.hp = player.hp - enemy.dmg
+                        print("Boof! That did", enemy.dmg, "damage!")
+
 
         elif user_choice.lower() == "special":
             for enemy in enemy_list:
                 if enemy.room == current_room:
-                    enemy.hp - player.dmg
-                print()
-                print("Improvised special move: The Comet Home Run!")
-                print("Nice! That did", player.special, "damage!")
-                print("That darn zombie is at", enemy.hp, " left!")
+                    enemy.hp = enemy.hp - player.special
+                    print()
+                    print("Improvised special move: The Comet Home Run!")
+                    print("Nice! That did", player.special, "damage!")
+                    print("That darn zombie is at", enemy.hp, " left!")
+                    if enemy.hp <= 0:
+                        print()
+                        print("Yahoo! Yah did it! He dead! Again!")
+                        player.hp = 65
+                    else:
+                        print("Kaboom! Let's keep it up!")
+                        print("Ayaya! The zombie is attacking! He's using bite!")
+                        player.hp = player.hp - enemy.special
+                        print("Boof! That did", enemy.special, "damage!")
 
         elif user_choice.lower() == "check health":
             print()
