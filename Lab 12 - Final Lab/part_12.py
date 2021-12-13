@@ -142,13 +142,14 @@ def main():
     enemy_list.append(enemy)
 
     # Room 11
+    # Room 11
     enemy = Character("Alright! Here's the zombie boss! If we beat this guy and we win!"
                       "\n Not the apocalypse yah dummy! If we defeat the boss zombie the other"
                       "\n zombies will either go outside or completely clear the joint to find"
                       "\n another boss to guard. But at least the school will be a crap ton safer!"
                       "\n And it will make it easier for authorities to find us and take us to a"
                       "\n safe zone! Let's end this! ONCE AND FOR ALL! Sorry...got too excited", 100,
-                       25, 50, 15, "zombie boss")
+                      25, 50, "zombie boss", 11)
     enemy_list.append(enemy)
     player = Player(65, 15, 25)
 # User input stuff
